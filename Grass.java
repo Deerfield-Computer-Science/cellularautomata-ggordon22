@@ -8,11 +8,20 @@ public class Grass extends Plant {
 	}
 	
 	public void reproduce() {
-		// this is silly code really, but as an example
+		int numberOfGrasses = 0;
+		for(LifeForm x: myWorld.getCreatureList()){
+			if (x.getClass().getName().equals("Grass")) {
+				numberOfGrasses++;
+			}
+		}
 		int newX = (int)(Math.random()*20);
 		int newY = (int)(Math.random()*20); 
-		
+		if (numberOfGrasses <= 40) {
 		myWorld.getCreatureList().add(new Grass(new Location(newX,newY), myWorld));
+		}
+	}
+	
+	public void eat() {
 	}
 
 }

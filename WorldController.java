@@ -24,12 +24,17 @@ public class WorldController extends GraphicsProgram {
 		theWorld = new World(20,20);
 		theWorld.getCreatureList().add( new Grass( new Location(3,6), theWorld ));
 		theWorld.getCreatureList().add( new Grass( new Location(4,6), theWorld ));
+		theWorld.getCreatureList().add( new BananaTree( new Location(9,9), theWorld ));
+		theWorld.getCreatureList().add( new BananaTree( new Location(9,10), theWorld ));
+		theWorld.getCreatureList().add( new Monkey( new Location(11,12), theWorld ));
+		theWorld.getCreatureList().add( new Monkey( new Location(13,12), theWorld ));
+		theWorld.getCreatureList().add( new Monkey( new Location(1,18), theWorld ));
 		theWorldCanvas = this.getGCanvas();
 	}
 	
 	public void runWorld(){
 		drawWorld();
-		for(int i=0; i<3;i++){
+		for(int i=0; i<50;i++){
 			theWorld.letTimePass();
 			pause(500);
 			drawWorld();

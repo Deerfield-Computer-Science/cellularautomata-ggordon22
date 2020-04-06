@@ -17,6 +17,7 @@ public abstract class LifeForm {
 		this.myLocation = myLocation;
 		this.myColor = myColor;
 		this.myWorld = myWorld;
+		
 		alive = true;
 	}
 	
@@ -78,10 +79,11 @@ public abstract class LifeForm {
 	public void setAge(int age) {
 		this.myAge = age;
 	}
-	
 	@Override
 	public String toString() {
 		return "LifeForm [myLifeSpan=" + myLifeSpan + ", myLocation="
 				+ myLocation + ", myColor=" + myColor + "]";
 	}
+
+	protected abstract void eat();
 }
