@@ -1,3 +1,5 @@
+package Pandemic;
+
 
 public class Location {
 	

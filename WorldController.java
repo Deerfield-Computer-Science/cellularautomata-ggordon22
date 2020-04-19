@@ -1,3 +1,5 @@
+package Pandemic;
+
 import java.awt.Color;
 
 import acm.graphics.*;
@@ -10,6 +12,7 @@ public class WorldController extends GraphicsProgram {
 	private GCanvas theWorldCanvas;
 	public static final int APPLICATION_WIDTH = 200;
 	public static final int APPLICATION_HEIGHT = 200;
+	RandomGenerator rgen = new RandomGenerator ();
 	
 	public void run(){	
 		setUpWorld();
@@ -22,14 +25,15 @@ public class WorldController extends GraphicsProgram {
 	
 	public void setUpWorld(){
 		theWorld = new World(20,20);
-		theWorld.getCreatureList().add( new Grass( new Location(3,6), theWorld ));
-		theWorld.getCreatureList().add( new Grass( new Location(4,6), theWorld ));
-		theWorld.getCreatureList().add( new BananaTree( new Location(9,9), theWorld ));
-		theWorld.getCreatureList().add( new BananaTree( new Location(9,10), theWorld ));
-		theWorld.getCreatureList().add( new Monkey( new Location(11,12), theWorld ));
-		theWorld.getCreatureList().add( new Monkey( new Location(13,12), theWorld ));
-		theWorld.getCreatureList().add( new Monkey( new Location(1,18), theWorld ));
+		for (int i=0; i<50; i ++) {
+			int randX = rgen.nextInt (0,theWorld.getWidth()-1);
+			int randY = rgen.nextInt (0,theWorld.getHeight()-1);
+			theWorld.getCreatureList().add (new Healthy (new Location (randX, randY), theWorld));
+		}
+		theWorld.getCreatureList().add (new InfectedAsymptomatic (new Location (1,1), theWorld));
 		theWorldCanvas = this.getGCanvas();
+		//System.out.print(theWorld.getCreatureList().get(49).getClass().getName());
+		//System.out.print(theWorld.getCreatureList().get(50).getClass().getName());
 	}
 	
 	public void runWorld(){

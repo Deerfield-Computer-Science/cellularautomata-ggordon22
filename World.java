@@ -1,10 +1,12 @@
+package Pandemic;
+
 import java.util.ArrayList;
 
 public class World {
 	
 	private int width;
 	private int height;
-	private ArrayList<LifeForm> creatureList;
+	public ArrayList<LifeForm> creatureList;
 	
 	public World(int width, int height) {
 		super();
@@ -15,26 +17,34 @@ public class World {
 	
 	public void letTimePass(){
 		
-		makeNewCreatures();
-		eatThings();
+		//makeNewCreatures();
+		//eatThings();
 		creaturesGetOlder();
-		purgeTheDead();		
+		purgeTheDead();
+		checkInfectionStatus();
+		for (int i = creatureList.size() - 1; i>=0; i--) {
+			LifeForm l = creatureList.get(i);
+			l.move();
+			if (l instanceof Healthy) {
+				((Healthy) l).infect();
+			}
+			
+		}
+	}
+	
+	public void checkInfectionStatus() {
+		for (int i = 0; i <creatureList.size(); i++) {
+			creatureList.get(i).checkInfection();
+		}
 	}
 	
 	public void makeNewCreatures() {
 		
 		int currentSizeOfCreatureList = creatureList.size();
 		System.out.println("size of list is "+currentSizeOfCreatureList);
-		for(int i=0; i< currentSizeOfCreatureList; i++) {
-			creatureList.get(i).reproduce();
-		}
-	}
-	
-	public void eatThings() {
-		int currentSizeOfCreatureList = creatureList.size();
-		for(int i=0; i< currentSizeOfCreatureList; i++) {
-			creatureList.get(i).eat();
-		}	
+		//for(int i=0; i< currentSizeOfCreatureList; i++) {
+		//	creatureList.get(i).reproduce();
+		//}
 	}
 	
 	public void purgeTheDead(){

@@ -1,3 +1,5 @@
+package Pandemic;
+
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -17,7 +19,6 @@ public abstract class LifeForm {
 		this.myLocation = myLocation;
 		this.myColor = myColor;
 		this.myWorld = myWorld;
-		
 		alive = true;
 	}
 	
@@ -40,8 +41,12 @@ public abstract class LifeForm {
 			alive=false;
 	}
 	
+	public abstract void checkInfection();
+	
 	// to be alive you have to be able to reproduce....
-	public abstract void reproduce();
+	//public abstract void reproduce();
+	
+	public abstract void move();
 	
 	public boolean isDead(){
 		return !alive;
@@ -79,11 +84,10 @@ public abstract class LifeForm {
 	public void setAge(int age) {
 		this.myAge = age;
 	}
+	
 	@Override
 	public String toString() {
 		return "LifeForm [myLifeSpan=" + myLifeSpan + ", myLocation="
 				+ myLocation + ", myColor=" + myColor + "]";
 	}
-
-	protected abstract void eat();
 }
